@@ -6,9 +6,14 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-3.times do |number|
-  Message.create(content: "#{number}番目のメッセージです！", user_id: User.first.id)
-  puts "#{number}番目のメッセージを作成しました"
+users = User.all
+
+# 各ユーザーに対して、メッセージを作成します
+users.each_with_index do |user, index|
+  3.times do |number|
+    Message.create(content: "#{number}番目のメッセージです！", user_id: user.id)
+    puts "#{number}番目のメッセージを#{index + 1}番目のユーザーに対して作成しました"
+  end
 end
 
 puts "メッセージの作成が完了しました"
